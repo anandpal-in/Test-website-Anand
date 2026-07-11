@@ -22,85 +22,31 @@ description: Books that have shaped Dr. Anand Pal's thinking about physics, scie
             </div>
 
             <div class="books-list" id="booksList">
-
-                <article class="book-card-full" data-category="currently-reading">
-                    <div class="book-cover-thumb">
-                        <img src="/assets/images/brainrace.webp" alt="The Great Brain Race book cover">
-                    </div>
-                    <div class="book-card-content">
-                        <h3>The Great Brain Race: How Global Universities Are Reshaping the World</h3>
-                        <p class="book-author-name">by Ben Wildavsky</p>
-                        <div class="book-card-meta">
-                            <span class="book-status-badge">Currently Reading</span>
-                            <span class="archive-category">Science Policy &amp; Education</span>
+                {% for book in site.data.books %}
+                    <article class="book-card-full" data-category="{{ book.filter_category }}">
+                        <div class="book-cover-thumb {% unless book.image %}book-cover-placeholder-icon{% endunless %}">
+                            {% if book.image %}
+                                <img src="{{ book.image }}" alt="{{ book.title }} book cover">
+                            {% else %}
+                                📚
+                            {% endif %}
                         </div>
-                        <p>Explores how international student mobility, branch campuses, for-profit models, and global university rankings are fueling a worldwide "brain race" and transforming the landscape of higher education.</p>
-                        <div class="archive-footer">
-                            <span class="coming-soon-label">Review coming soon</span>
+                        <div class="book-card-content">
+                            <h3>{{ book.title }}</h3>
+                            <p class="book-author-name">by {{ book.author }}</p>
+                            <div class="book-card-meta">
+                                {% if book.status == 'currently-reading' %}
+                                    <span class="book-status-badge">Currently Reading</span>
+                                {% endif %}
+                                <span class="archive-category">{{ book.category }}</span>
+                            </div>
+                            <p>{{ book.excerpt }}</p>
+                            <div class="archive-footer">
+                                <span class="coming-soon-label">{{ book.note | default: 'Coming Soon' }}</span>
+                            </div>
                         </div>
-                    </div>
-                </article>
-
-                <article class="book-card-full" data-category="quantum-physics">
-                    <div class="book-cover-thumb book-cover-placeholder-icon">📚</div>
-                    <div class="book-card-content">
-                        <h3>Introduction to Quantum Mechanics</h3>
-                        <p class="book-author-name">by David J. Griffiths</p>
-                        <div class="book-card-meta">
-                            <span class="archive-category">Quantum Physics &amp; Materials</span>
-                        </div>
-                        <p>A comprehensive introduction to quantum mechanics that balances mathematical rigor with physical insight. Essential reading for understanding the foundations of quantum physics.</p>
-                        <div class="archive-footer">
-                            <span class="coming-soon-label">Coming Soon</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="book-card-full" data-category="science-policy">
-                    <div class="book-cover-thumb book-cover-placeholder-icon">📚</div>
-                    <div class="book-card-content">
-                        <h3>The Endless Frontier: Science Policy in the Post-War Era</h3>
-                        <p class="book-author-name">by Daniel S. Greenberg</p>
-                        <div class="book-card-meta">
-                            <span class="archive-category">Science Policy &amp; Education</span>
-                        </div>
-                        <p>An examination of how science policy evolved in the United States after World War II, exploring the relationship between government, academia, and scientific research.</p>
-                        <div class="archive-footer">
-                            <span class="coming-soon-label">Coming Soon</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="book-card-full" data-category="philosophy">
-                    <div class="book-cover-thumb book-cover-placeholder-icon">📚</div>
-                    <div class="book-card-content">
-                        <h3>The Structure of Scientific Revolutions</h3>
-                        <p class="book-author-name">by Thomas S. Kuhn</p>
-                        <div class="book-card-meta">
-                            <span class="archive-category">Philosophy of Science</span>
-                        </div>
-                        <p>A landmark work that introduced the concept of paradigm shifts in scientific thinking. Essential reading for understanding how scientific knowledge advances.</p>
-                        <div class="archive-footer">
-                            <span class="coming-soon-label">Coming Soon</span>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="book-card-full" data-category="quantum-physics">
-                    <div class="book-cover-thumb book-cover-placeholder-icon">📚</div>
-                    <div class="book-card-content">
-                        <h3>Superconductivity: A Very Short Introduction</h3>
-                        <p class="book-author-name">by Stephen J. Blundell</p>
-                        <div class="book-card-meta">
-                            <span class="archive-category">Quantum Physics &amp; Materials</span>
-                        </div>
-                        <p>A concise introduction to superconductivity, covering its discovery, theoretical understanding, and technological applications.</p>
-                        <div class="archive-footer">
-                            <span class="coming-soon-label">Coming Soon</span>
-                        </div>
-                    </div>
-                </article>
-
+                    </article>
+                {% endfor %}
             </div>
 
             <div class="wish-list-section">

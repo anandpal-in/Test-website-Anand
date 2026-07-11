@@ -143,15 +143,18 @@ description: Dr. Anand Pal - Science, Technology &amp; Human Futures
     <div class="container">
         <h2 style="margin-bottom: 2rem;">Currently Reading</h2>
         <div class="reading-showcase">
+            {% assign homepage_featured_book = site.data.books | where: "status", "currently-reading" | first %}
             <div class="book-display">
                 <div class="book-placeholder">
-                    <img src="/assets/images/brainrace.webp" alt="The Great Brain Race book cover">
+                    {% if homepage_featured_book.image %}
+                        <img src="{{ homepage_featured_book.image }}" alt="{{ homepage_featured_book.title }} book cover">
+                    {% endif %}
                 </div>
                 <div class="book-info">
                     <h3>Featured Book</h3>
-                    <p class="book-title">The Great Brain Race: How Global Universities Are Reshaping the World</p>
-                    <p class="book-author">by Ben Wildavsky</p>
-                    <p class="book-reflection">Explores how international student mobility, branch campuses, for-profit models, and global university rankings are fueling a worldwide "brain race" and transforming the landscape of higher education...</p>
+                    <p class="book-title">{{ homepage_featured_book.title }}</p>
+                    <p class="book-author">by {{ homepage_featured_book.author }}</p>
+                    <p class="book-reflection">{{ homepage_featured_book.excerpt }}</p>
                     <a href="/thought/#books" class="read-more">See full reading list →</a>
                 </div>
             </div>

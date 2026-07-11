@@ -23,124 +23,26 @@ description: Explore Dr. Anand Pal's articles on quantum physics, science policy
             </div>
 
             <div class="archive-list" id="archiveList">
-
-                <a href="/articles/Who_Owns_Publicly_Funded_Research/" class="pub-item-link" data-category="science-policy">
-                    <article class="pub-item">
-                        <div class="archive-content">
-                            <h3>Who Owns Publicly Funded Research?</h3>
-                            <div class="archive-meta">
-                                <span class="archive-date">📅 June 26, 2026</span>
-                                <span class="archive-category">Science Policy</span>
+                {% for article in site.data.articles %}
+                    <a href="{{ article.url }}" class="pub-item-link{% if article.status == 'coming-soon' %} pub-item-link-disabled{% endif %}" data-category="{{ article.filter_category }}">
+                        <article class="pub-item">
+                            <div class="archive-content">
+                                <h3>{{ article.title }}</h3>
+                                <div class="archive-meta">
+                                    <span class="archive-date">📅 {{ article.display_date }}</span>
+                                    <span class="archive-category">{{ article.category }}</span>
+                                </div>
+                                <p>{{ article.excerpt }}</p>
+                                <div class="archive-footer">
+                                    <span class="read-time">⏱️ {{ article.read_time }}</span>
+                                    {% if article.status == 'coming-soon' %}
+                                        <span class="coming-soon-label">Coming Soon</span>
+                                    {% endif %}
+                                </div>
                             </div>
-                            <p> If the public finances scientific research through taxes, should the public be required to pay again to read the results?
-                            </p>
-                            <div class="archive-footer">
-                                <span class="read-time">⏱️ 10-12 min read</span>
-                            </div>
-                        </div>
-                    </article>
-                </a>
-                
-                <a href="/articles/The_Fear_of_Falling_Behind/" class="pub-item-link" data-category="reflections">
-                    <article class="pub-item">
-                        <div class="archive-content">
-                            <h3>The Fear of Falling Behind</h3>
-                            <div class="archive-meta">
-                                <span class="archive-date">📅 April 2026</span>
-                                <span class="archive-category">Reflections</span>
-                            </div>
-                            <p>Busyness is not progress: work driven by purpose builds mastery; work driven by fear leads to burnout...</p>
-                            <div class="archive-footer">
-                                <span class="read-time">⏱️ 15 min read</span>
-                            </div>
-                        </div>
-                    </article>
-                </a>
-
-                <a href="/articles/The-Global-Science-Race/" class="pub-item-link" data-category="science-policy">
-                    <article class="pub-item">
-                        <div class="archive-content">
-                            <h3>The Global Science Race</h3>
-                            <div class="archive-meta">
-                                <span class="archive-date">📅 February 2026</span>
-                                <span class="archive-category">Science Policy</span>
-                            </div>
-                            <p>A reflection on how China became a world knowledge power engine, pushing behind the US and other Western countries, and what Indian universities can learn from it.</p>
-                            <div class="archive-footer">
-                                <span class="read-time">⏱️ 8 min read</span>
-                            </div>
-                        </div>
-                    </article>
-                </a>
-
-                <a href="#" class="pub-item-link pub-item-link-disabled" data-category="research-insights">
-                    <article class="pub-item">
-                        <div class="archive-content">
-                            <h3>The Pseudogap Mystery in High-Temperature Superconductors</h3>
-                            <div class="archive-meta">
-                                <span class="archive-date">📅 Coming Soon</span>
-                                <span class="archive-category">Research Insights</span>
-                            </div>
-                            <p>Exploring one of the most intriguing unsolved problems in condensed matter physics. A deep dive into the pseudogap phenomenon and its implications for understanding superconductivity.</p>
-                            <div class="archive-footer">
-                                <span class="read-time">⏱️ 8 min read</span>
-                                <span class="coming-soon-label">Coming Soon</span>
-                            </div>
-                        </div>
-                    </article>
-                </a>
-
-                <a href="#" class="pub-item-link pub-item-link-disabled" data-category="education">
-                    <article class="pub-item">
-                        <div class="archive-content">
-                            <h3>Teaching Quantum Computing to Engineering Students</h3>
-                            <div class="archive-meta">
-                                <span class="archive-date">📅 Coming Soon</span>
-                                <span class="archive-category">Education</span>
-                            </div>
-                            <p>Reflections on making quantum concepts accessible without sacrificing rigor. Strategies for integrating quantum computing into engineering curricula and preparing students for the quantum era.</p>
-                            <div class="archive-footer">
-                                <span class="read-time">⏱️ 7 min read</span>
-                                <span class="coming-soon-label">Coming Soon</span>
-                            </div>
-                        </div>
-                    </article>
-                </a>
-
-                <a href="#" class="pub-item-link pub-item-link-disabled" data-category="technology">
-                    <article class="pub-item">
-                        <div class="archive-content">
-                            <h3>Quantum Technologies and Global Power Dynamics</h3>
-                            <div class="archive-meta">
-                                <span class="archive-date">📅 Coming Soon</span>
-                                <span class="archive-category">Technology &amp; Society</span>
-                            </div>
-                            <p>How emerging quantum technologies are reshaping geopolitical landscapes and what this means for international research collaboration and scientific independence.</p>
-                            <div class="archive-footer">
-                                <span class="read-time">⏱️ 12 min read</span>
-                                <span class="coming-soon-label">Coming Soon</span>
-                            </div>
-                        </div>
-                    </article>
-                </a>
-
-                <a href="#" class="pub-item-link pub-item-link-disabled" data-category="reflections">
-                    <article class="pub-item">
-                        <div class="archive-content">
-                            <h3>On the Role of Universities in a Rapidly Changing World</h3>
-                            <div class="archive-meta">
-                                <span class="archive-date">📅 Coming Soon</span>
-                                <span class="archive-category">Reflections</span>
-                            </div>
-                            <p>Thoughts on how universities can remain relevant and transformative institutions in the face of technological disruption, economic uncertainty, and shifting societal needs.</p>
-                            <div class="archive-footer">
-                                <span class="read-time">⏱️ 9 min read</span>
-                                <span class="coming-soon-label">Coming Soon</span>
-                            </div>
-                        </div>
-                    </article>
-                </a>
-
+                        </article>
+                    </a>
+                {% endfor %}
             </div>
 
             <div style="text-align: center; margin-top: 3rem;">

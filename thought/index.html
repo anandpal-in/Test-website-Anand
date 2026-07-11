@@ -8,6 +8,17 @@ description: Ideas, dialogue and global impact through writing, speaking, and in
     <h1>Ideas, Learning, and Dialogue</h1>
 </section>
 
+<section class="quick-links-section">
+    <div class="container">
+        <div class="quick-links-grid">
+            <a href="#blog">📝 Blog &amp; Essays</a>
+            <a href="#books">📚 Books &amp; Reading</a>
+            <a href="#invited-talks">🎤 Talks &amp; Presentations</a>
+            <a href="#reading">📖 Recommended Reading</a>
+        </div>
+    </div>
+</section>
+
 <section class="voice-pillars">
     <div class="container">
         <div class="pillars-grid">
@@ -54,59 +65,21 @@ description: Ideas, dialogue and global impact through writing, speaking, and in
             <h2 class="section-title">Blog &amp; Essays</h2>
             <p style="font-size: 1.05rem; color: var(--text-light); margin-bottom: 3rem;">Exploring quantum physics, science policy, education, and the future of research</p>
             <div class="blog-grid" style="margin-bottom: 3rem;">
-
-                <article class="blog-card" data-category="policy">
-                    <div class="blog-meta">`
-                        <span class="blog-date">June 2026</span>
-                        <span class="blog-category">Science Policy</span>
-                    </div>
-                    <h3>Who Owns Publicly Funded Research? Global Shifts in Scientific Publishing and India’s Strategic Choices</h3>
-                    <p>Taxpayers fund research, yet organizations pay again to publish and access it. Is the current publishing model sustainable? And what should India do next?....</p>
-                    <div class="blog-footer">
-                        <span class="read-time">10 min read</span>
-                        <a href="/articles/Who_Owns_Publicly_Funded_Research/" class="read-more">Read more →</a>
-                    </div>
-                </article>
-
-                <article class="blog-card" data-category="policy">
-                    <div class="blog-meta">
-                        <span class="blog-date">February 2026</span>
-                        <span class="blog-category">Education</span>
-                    </div>
-                    <h3>The Global Science Race</h3>
-                    <p>A reflection on how China became a world knowledge power engine, pushing behind the US and other Western countries, and what Indian universities can learn from it…</p>
-                    <div class="blog-footer">
-                        <span class="read-time">5 min read</span>
-                        <a href="/articles/The-Global-Science-Race/" class="read-more">Read more →</a>
-                    </div>
-                </article>
-
-                <article class="blog-card" data-category="research">
-                    <div class="blog-meta">
-                        <span class="blog-date">April 2026</span>
-                        <span class="blog-category">Reflection</span>
-                    </div>
-                    <h3>The Fear of Falling Behind:Rethinking Work, Busyness, and the Art of Doing Nothing</h3>
-                    <p>Busyness is not progress: work driven by purpose builds mastery; work driven by fear leads to burnout...</p>
-                    <div class="blog-footer">
-                        <span class="read-time">15 min read</span>
-                        <a href="/articles/The_Fear_of_Falling_Behind/" class="read-more">Read more →</a>
-                    </div>
-                </article>
-
-                
-                <!-- <article class="blog-card" data-category="research">
-                    <div class="blog-meta">
-                        <span class="blog-date">Coming Soon</span>
-                        <span class="blog-category">Research Insights</span>
-                    </div>
-                    <h3>The Pseudogap Mystery in High-Temperature Superconductors</h3>
-                    <p>Exploring one of the most intriguing unsolved problems in condensed matter physics...</p>
-                    <div class="blog-footer">
-                        <span class="read-time">8 min read</span>
-                        <a href="#" class="read-more">Coming Soon</a>
-                    </div>
-                </article> -->
+                {% assign published_article_cards = site.data.articles | where: "status", "published" %}
+                {% for article in published_article_cards limit:3 %}
+                    <article class="blog-card" data-category="{{ article.filter_category }}">
+                        <div class="blog-meta">
+                            <span class="blog-date">{{ article.display_date }}</span>
+                            <span class="blog-category">{{ article.category }}</span>
+                        </div>
+                        <h3>{{ article.title }}</h3>
+                        <p>{{ article.excerpt }}</p>
+                        <div class="blog-footer">
+                            <span class="read-time">{{ article.read_time }}</span>
+                            <a href="{{ article.url }}" class="read-more">Read more →</a>
+                        </div>
+                    </article>
+                {% endfor %}
             </div>
             <div style="padding: 2rem; background: white; border-radius: 8px; border-left: 4px solid var(--primary);">
                 <h3 style="margin-bottom: 1rem; color: var(--secondary);">Explore All Articles</h3>
@@ -117,21 +90,26 @@ description: Ideas, dialogue and global impact through writing, speaking, and in
     </div>
 </section>
 
-<section id="books" class="content-section">
+<section id="reading" class="content-section" data-section="reading">
     <div class="container">
         <h2 class="section-title">Books &amp; Reading</h2>
         <p style="text-align: center; max-width: 700px; margin: 0 auto 3rem; font-size: 1.1rem; color: var(--text-light);">I read across physics, history, philosophy, education, literature, and technology to understand not only systems of knowledge, but also the structure of human civilisation.</p>
 
         <div class="reading-list">
+            {% assign current_book = site.data.books | where: "status", "currently-reading" | first %}
             <div class="book-item">
                 <div class="book-cover-placeholder">
-                    <img src="/assets/images/brainrace.webp" alt="The Great Brain Race book cover">
+                    {% if current_book.image %}
+                        <img src="{{ current_book.image }}" alt="{{ current_book.title }} book cover">
+                    {% else %}
+                        <div class="book-cover-placeholder-icon">📚</div>
+                    {% endif %}
                 </div>
                 <div class="book-details">
                     <span class="reading-status">Currently Reading</span>
-                    <h3>The Great Brain Race: How Global Universities Are Reshaping the World</h3>
-                    <p class="book-author">by Ben Wildavsky</p>
-                    <p class="book-review">Explores how international student mobility, branch campuses, for-profit models, and global university rankings are fueling a worldwide "brain race" and transforming the landscape of higher education.</p>
+                    <h3>{{ current_book.title }}</h3>
+                    <p class="book-author">by {{ current_book.author }}</p>
+                    <p class="book-review">{{ current_book.excerpt }}</p>
                 </div>
             </div>
 
